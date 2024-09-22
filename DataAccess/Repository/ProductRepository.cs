@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 namespace DataAccess.Repository
 {
     public class ProductRepository : IProductRepository
-    {        
+    {
         public void CreateProduct(Product newProduct)
         {
             try
             {
-                using var context = new Prn221FstoreContext();                
-                context.Products.Add(newProduct);                
+                using var context = new Prn221FstoreContext();
+                context.Products.Add(newProduct);
                 context.SaveChanges();
             }
             catch (Exception ex)
@@ -39,14 +39,14 @@ namespace DataAccess.Repository
             try
             {
                 using var context = new Prn221FstoreContext();
-                
+
                 Product? existingProduct = context.Products.FirstOrDefault(p => p.ProductId == updatedProduct.ProductId)
-                    ?? throw new Exception("Product not found!");                
+                    ?? throw new Exception("Product not found!");
                 existingProduct.ProductName = updatedProduct.ProductName;
                 existingProduct.Weight = updatedProduct.Weight;
                 existingProduct.UnitPrice = updatedProduct.UnitPrice;
                 existingProduct.UnitsInStock = updatedProduct.UnitsInStock;
-                existingProduct.CategoryId = updatedProduct.CategoryId;                
+                existingProduct.CategoryId = updatedProduct.CategoryId;
                 context.SaveChanges();
             }
             catch (Exception ex)
@@ -72,10 +72,10 @@ namespace DataAccess.Repository
         {
             try
             {
-                using var context = new Prn221FstoreContext();                
+                using var context = new Prn221FstoreContext();
                 var searchResults = context.Products
                     .Where(p => p.ProductName.Contains(productName))
-                    .ToList();                
+                    .ToList();
                 return searchResults;
             }
             catch (Exception ex)
@@ -87,7 +87,7 @@ namespace DataAccess.Repository
         {
             try
             {
-                using var context = new Prn221FstoreContext();                
+                using var context = new Prn221FstoreContext();
                 Product? product = context.Products.FirstOrDefault(p => p.ProductId == id);
                 return product ?? throw new Exception("Product not found!");
             }
@@ -112,7 +112,6 @@ namespace DataAccess.Repository
                 throw new Exception("Error while searching products by price: " + ex.Message);
             }
         }
-
 
     }
 }
