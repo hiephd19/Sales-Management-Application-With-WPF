@@ -32,7 +32,7 @@ public partial class Prn221FstoreContext : DbContext
                             .SetBasePath(Directory.GetCurrentDirectory())
                             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
         IConfigurationRoot configuration = builder.Build();
-        optionsBuilder.UseSqlServer(configuration.GetConnectionString("PRN221Assign"));
+        optionsBuilder.UseSqlServer(configuration.GetConnectionString("PRN221"));
     }
 
 
