@@ -68,7 +68,7 @@ namespace DataAccess.Repository
                 throw new Exception("Error while deleting product: " + ex.Message);
             }
         }
-        public List<Product> SearchProductsByName(string productName)
+        public List<Product> GetProductsByName(string productName)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace DataAccess.Repository
                 throw new Exception("Error while searching for product: " + ex.Message);
             }
         }
-        public Product? SearchProductsById(int id)
+        public Product? GetProductsById(int id)
         {
             try
             {
@@ -95,23 +95,6 @@ namespace DataAccess.Repository
             {
                 throw new Exception("Error while fetching product by ID: " + ex.Message);
             }
-        }
-        public List<Product> SearchProductsByPrice(decimal minPrice, decimal maxPrice)
-        {
-            try
-            {
-                using var context = new Prn221FstoreContext();
-                var products = context.Products
-                    .Where(p => p.UnitPrice >= minPrice && p.UnitPrice <= maxPrice)
-                    .ToList();
-
-                return products;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error while searching products by price: " + ex.Message);
-            }
-        }
-
+        }        
     }
 }
